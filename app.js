@@ -17,6 +17,8 @@ const { authUser, authAdmin } = require("./middleware/authentication");
 const public_auth_router = require("./routes/public/authRoute");
 // ADMIN ROUTES
 const admin_auth_router = require("./routes/admin/authRoute");
+const admin_author_router = require("./routes/admin/authorRoute");
+const admin_novel_router = require("./routes/admin/novelRoute");
 
 // ERROR HANDLER
 const notFoundMiddleware = require("./middleware/not-found");
@@ -40,6 +42,8 @@ app.use(xss());
 app.use("/api/v1/public/authentication", public_auth_router);
 // ADMIN ROUTERS
 app.use("/api/v1/admin/authentication", admin_auth_router);
+app.use("/api/v1/admin/author", authAdmin, admin_author_router);
+app.use("/api/v1/admin/novel", authAdmin, admin_novel_router);
 
 // ERROR HANDLER
 app.use(notFoundMiddleware);
