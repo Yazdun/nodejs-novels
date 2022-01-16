@@ -24,7 +24,7 @@ const AuthorSchema = new mongoose.Schema({
     required: [true, "bio is required"],
     minLength: 10,
   },
-  image: { type: String, required: [true, "image is required"] },
+  image: { type: String },
   stars: [],
 });
 
