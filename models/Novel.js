@@ -18,7 +18,7 @@ const NovelSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Author",
     },
-    desc: {
+    description: {
       type: String,
       required: [true, "description is required"],
       minLength: 10,
@@ -32,7 +32,7 @@ const NovelSchema = new mongoose.Schema(
       required: [true, "publish date is required"],
       maxLength: 4,
     },
-    image: { type: String, required: [true, "image is required"] },
+    image: { type: String },
     likes: [],
   },
   { timestamps: true }

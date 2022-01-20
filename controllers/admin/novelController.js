@@ -23,7 +23,11 @@ const updateNovel = async (req, res) => {
 
   const novel = await Novel.findOneAndUpdate(
     { _id: novelId },
-    { ...req.body, title: req.body.title.toLowerCase() },
+    {
+      ...req.body,
+      title: req.body.title.toLowerCase(),
+      author: req.body.author.toLowerCase(),
+    },
     {
       new: true,
       runValidators: true,
