@@ -2,6 +2,7 @@ const { Review, Novel } = require("../../models");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../../errors");
 
+// CREATE NEW REVIEW
 const createReview = async (req, res) => {
   const {
     params: { id: novelId },
@@ -26,6 +27,7 @@ const createReview = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ review });
 };
 
+// DELETE REVIEW
 const deleteReview = async (req, res) => {
   const {
     params: { id: reviewId },
@@ -42,6 +44,7 @@ const deleteReview = async (req, res) => {
   res.status(StatusCodes.OK).send();
 };
 
+// UPDATE REVIEW
 const updateReview = async (req, res) => {
   const {
     params: { id: reviewId },
@@ -60,6 +63,7 @@ const updateReview = async (req, res) => {
   res.status(StatusCodes.OK).json({ review });
 };
 
+// GET USER REVIEW
 const getReviews = async (req, res) => {
   const userId = req.user.userId;
   const userReviews = await Review.find({ createdBy: userId });
