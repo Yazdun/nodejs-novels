@@ -7,9 +7,9 @@ const {
   getAllReviews,
 } = require("../../controllers/admin/reviewController");
 
-// router.get("/", getReviews);
-// router.post("/create/:id", createReview);
-// router.delete("/delete/:id", deleteReview);
+router.get("/", getAllReviews);
+router.delete("/delete/:id", deleteReview);
 router.patch("/submit/:id", submitReview);
+router.patch("/suspend/:id", suspendReview);
 
 module.exports = router;
