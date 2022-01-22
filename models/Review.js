@@ -22,6 +22,10 @@ const ReviewSchema = new mongoose.Schema({
     required: [true, "rate is required"],
     enum: [1, 2, 3],
   },
+  isVerified: {
+    type:Boolean,
+    default: false
+  }
 });
 
 module.exports = mongoose.model("Review", ReviewSchema);
