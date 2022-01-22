@@ -3,18 +3,38 @@ const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../../errors");
 
 const submitReview = async (req, res) => {
-  // TODO SUBMIT REVIEW
+  const {
+    params: { id: reviewId },
+  } = req;
+
+  const review = await Review.findOneAndUpdate(
+    { _id: reviewId },
+    { isVerified: true },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  if (!review) throw new NotFoundError(`this review doesn't exist`);
+
+  res.status(StatusCodes.OK).json({ review });
 };
 
 const suspendReview = async (req, res) => {
   // TODO SUSPEND REVIEW
 };
 
-const deleteNovel = async (req, res) => {
+const deleteReview = async (req, res) => {
   // TODO DELETE REVIEW
 };
 
+const getAllReviews = async (req, res) => {
+  // TODO GET ALL REVIEWS
+};
+
 module.exports = {
-  submitNovel,
-  deleteNovel,
+  submitReview,
+  suspendReview,
+  deleteReview,
+  getAllReviews,
 };

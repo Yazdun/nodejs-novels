@@ -21,7 +21,7 @@ const protected_review_router = require("./routes/protected/reviewRoute");
 const admin_auth_router = require("./routes/admin/authRoute");
 const admin_author_router = require("./routes/admin/authorRoute");
 const admin_novel_router = require("./routes/admin/novelRoute");
-
+const admin_review_router = require("./routes/admin/reviewRoute");
 // ERROR HANDLER
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -48,6 +48,7 @@ app.use("/api/v1/protected/review", authUser, protected_review_router);
 app.use("/api/v1/admin/authentication", admin_auth_router);
 app.use("/api/v1/admin/author", authAdmin, admin_author_router);
 app.use("/api/v1/admin/novel", authAdmin, admin_novel_router);
+app.use("/api/v1/admin/review", authAdmin, admin_review_router);
 
 // ERROR HANDLER
 app.use(notFoundMiddleware);

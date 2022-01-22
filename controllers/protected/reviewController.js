@@ -52,7 +52,7 @@ const updateReview = async (req, res) => {
 
   const review = await Review.findOneAndUpdate(
     { _id: reviewId, createdBy: req.user.userId },
-    req.body,
+    { ...req.body, isVerified: false },
     {
       new: true,
       runValidators: true,
