@@ -40,6 +40,7 @@ const deleteReview = async (req, res) => {
   if (!review) throw new NotFoundError(`this review doesn't exist`);
 
   await Review.findOneAndRemove({ _id: reviewId });
+  review.deleteNotifications();
 
   res.status(StatusCodes.OK).send();
 };
@@ -52,7 +53,7 @@ const updateReview = async (req, res) => {
 
   const review = await Review.findOneAndUpdate(
     { _id: reviewId, createdBy: req.user.userId },
-    { ...req.body, isVerified: false },
+    { ...req.body, isApproved: false, isDisapproved: false, isPending: true },
     {
       new: true,
       runValidators: true,

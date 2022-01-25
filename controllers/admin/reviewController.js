@@ -1,15 +1,15 @@
-const { Novel, Author, Review } = require("../../models");
+const { Review } = require("../../models");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../../errors");
 
-const submitReview = async (req, res) => {
+const approveReview = async (req, res) => {
   const {
     params: { id: reviewId },
   } = req;
 
   const review = await Review.findOneAndUpdate(
     { _id: reviewId },
-    { isVerified: true },
+    { isApproved: true, isDisapproved: false, isPending: false },
     {
       new: true,
       runValidators: true,
@@ -17,17 +17,23 @@ const submitReview = async (req, res) => {
   );
   if (!review) throw new NotFoundError(`this review doesn't exist`);
 
-  res.status(StatusCodes.OK).json({ review });
+  review.createNotification("success");
+
+  const updatedReview = await Review.findOne({ _id: reviewId })
+    .populate("novelRef", ["image", "title", "author"])
+    .populate("createdBy", ["username", "image"]);
+
+  res.status(StatusCodes.OK).json({ updatedReview });
 };
 
-const suspendReview = async (req, res) => {
+const disapproveReview = async (req, res) => {
   const {
     params: { id: reviewId },
   } = req;
 
   const review = await Review.findOneAndUpdate(
     { _id: reviewId },
-    { isVerified: false },
+    { isApproved: false, isDisapproved: true, isPending: false },
     {
       new: true,
       runValidators: true,
@@ -35,7 +41,13 @@ const suspendReview = async (req, res) => {
   );
   if (!review) throw new NotFoundError(`this review doesn't exist`);
 
-  res.status(StatusCodes.OK).json({ review });
+  review.createNotification("fail");
+
+  const updatedReview = await Review.findOne({ _id: reviewId })
+    .populate("novelRef", ["image", "title", "author"])
+    .populate("createdBy", ["username", "image"]);
+
+  res.status(StatusCodes.OK).json({ updatedReview });
 };
 
 const deleteReview = async (req, res) => {
@@ -48,18 +60,46 @@ const deleteReview = async (req, res) => {
   });
   if (!review) throw new NotFoundError(`this review doesn't exist`);
 
+  review.deleteNotifications();
+
   res.status(StatusCodes.OK).send();
 };
 
 const getAllReviews = async (req, res) => {
-  const reviews = await Review.find().sort("createdAt");
+  const { status } = req.query;
+  // console.log(status);
+  let reviews = await Review.find()
+    .populate("novelRef", ["image", "title", "author"])
+    .populate("createdBy", ["username", "image"])
+    .sort("createdAt");
   reviews.reverse();
+
+  switch (status) {
+    case "isPending":
+      reviews = reviews.filter((review) => {
+        return review.isPending;
+      });
+      break;
+    case "isApproved":
+      reviews = reviews.filter((review) => {
+        return review.isApproved;
+      });
+      break;
+    case "isDisapproved":
+      reviews = reviews.filter((review) => {
+        return review.isDisapproved;
+      });
+      break;
+
+    default:
+      break;
+  }
   res.status(StatusCodes.OK).json({ reviews });
 };
 
 module.exports = {
-  submitReview,
-  suspendReview,
+  approveReview,
+  disapproveReview,
   deleteReview,
   getAllReviews,
 };
