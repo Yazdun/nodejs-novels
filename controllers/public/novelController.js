@@ -1,4 +1,4 @@
-const { Novel, Author, Review } = require("../../models");
+const { Novel, Review } = require("../../models");
 const { StatusCodes } = require("http-status-codes");
 const { shuffle } = require("../../utils");
 const { BadRequestError, NotFoundError } = require("../../errors");
