@@ -2,7 +2,7 @@ const { User } = require("../../models");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, UnauthenticatedError } = require("../../errors");
 
-const register = async (req, res) => {
+const join = async (req, res) => {
   const emailExists = await User.findOne({
     email: req.body.email.toLowerCase(),
   });
@@ -10,11 +10,10 @@ const register = async (req, res) => {
 
   if (emailExists && usernameExists)
     throw new BadRequestError(
-      "this email is already registered,this username is already taken"
+      "this email is already joined,this username is already taken"
     );
 
-  if (emailExists)
-    throw new BadRequestError("this email is already registered");
+  if (emailExists) throw new BadRequestError("this email is already joined");
 
   if (usernameExists)
     throw new BadRequestError("this username is already taken");
@@ -41,10 +40,13 @@ const login = async (req, res) => {
     throw new UnauthenticatedError("username or password is not correct");
 
   const token = user.createJWT();
-  res.status(StatusCodes.OK).json({ user: { username: user.username }, token });
+  res.status(StatusCodes.OK).json({
+    user: { username: user.username },
+    token,
+  });
 };
 
 module.exports = {
-  register,
+  join,
   login,
 };
