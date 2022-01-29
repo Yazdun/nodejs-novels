@@ -15,6 +15,7 @@ const { authUser, authAdmin } = require("./middleware/authentication");
 
 // PUBLIC ROUTES
 const public_auth_router = require("./routes/public/authRoute");
+const public_novel_router = require("./routes/public/novelRoute");
 // PROTECTED ROUTES
 const protected_user_router = require("./routes/protected/userRoute");
 const protected_review_router = require("./routes/protected/reviewRoute");
@@ -43,6 +44,7 @@ app.use(xss());
 
 // PUBLIC ROUTERS
 app.use("/api/v1/public/authentication", public_auth_router);
+app.use("/api/v1/public/novel", public_novel_router);
 // PROTECTED ROUTERS
 app.use("/api/v1/protected/user", authUser, protected_user_router);
 app.use("/api/v1/protected/review", authUser, protected_review_router);
