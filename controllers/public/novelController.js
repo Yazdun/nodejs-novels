@@ -4,7 +4,7 @@ const { shuffle } = require("../../utils");
 const { BadRequestError, NotFoundError } = require("../../errors");
 
 const getAllNovels = async (req, res) => {
-  const novels = await Novel.find();
+  const novels = await Novel.find({}, ["title", "image", "likes"]);
   shuffle(novels);
   res.status(StatusCodes.OK).json({ novels });
 };
@@ -38,7 +38,9 @@ const getNovel = async (req, res) => {
     );
   }
 
-  res.status(StatusCodes.OK).json({ novel, rate, basedOnReviews });
+  res
+    .status(StatusCodes.OK)
+    .json({ novel: { ...novel._doc, rate, basedOnReviews } });
 };
 
 const getRelatedNovels = async (req, res) => {
@@ -56,14 +58,17 @@ const getRelatedNovels = async (req, res) => {
   if (!authorNovels) {
     const defaultNovels = await Novel.find();
     shuffle(defaultNovels);
-    const relatedNovels = defaultNovels.slice(0, 3);
-
+    const relatedNovels = defaultNovels
+      .filter((i) => {
+        return i._id !== novelId;
+      })
+      .slice(0, 3);
     res.status(StatusCodes.OK).json({ relatedNovels });
   } else {
     shuffle(authorNovels);
     const relatedNovels = authorNovels
       .filter((i) => {
-        return i._id !== novelId;
+        return i._id.toString() !== novelId;
       })
       .slice(0, 3);
     res.status(StatusCodes.OK).json({ relatedNovels });
