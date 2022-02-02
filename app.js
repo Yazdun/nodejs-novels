@@ -20,6 +20,7 @@ const public_author_router = require("./routes/public/authorRoute");
 // PROTECTED ROUTES
 const protected_user_router = require("./routes/protected/userRoute");
 const protected_review_router = require("./routes/protected/reviewRoute");
+const protected_status_router = require("./routes/protected/statusRoute");
 // ADMIN ROUTES
 const admin_auth_router = require("./routes/admin/authRoute");
 const admin_author_router = require("./routes/admin/authorRoute");
@@ -50,6 +51,7 @@ app.use("/api/v1/public/author", public_author_router);
 // PROTECTED ROUTERS
 app.use("/api/v1/protected/user", authUser, protected_user_router);
 app.use("/api/v1/protected/review", authUser, protected_review_router);
+app.use("/api/v1/protected/status", authUser, protected_status_router);
 // ADMIN ROUTERS
 app.use("/api/v1/admin/authentication", admin_auth_router);
 app.use("/api/v1/admin/author", authAdmin, admin_author_router);
