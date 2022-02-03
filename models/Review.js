@@ -16,13 +16,12 @@ const ReviewSchema = new mongoose.Schema(
     content: {
       type: String,
       required: [true, "content is required"],
-      minlength: 2,
-      maxlength: 1000,
+      minlength: 20,
     },
     rate: {
       type: Number,
       required: [true, "rate is required"],
-      enum: [1, 2, 3],
+      enum: [1, 2, 3, 4, 5],
     },
     isApproved: {
       type: Boolean,

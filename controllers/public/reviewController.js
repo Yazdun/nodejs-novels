@@ -7,7 +7,10 @@ const getNovelReviews = async (req, res) => {
     params: { id: novelId },
   } = req;
 
-  const reviews = await Review.find({ novelRef: novelId });
+  const reviews = await Review.find({
+    novelRef: novelId,
+    isApproved: true,
+  }).populate("createdBy", ["image", "username"]);
 
   res.status(StatusCodes.OK).json({ reviews });
 };
