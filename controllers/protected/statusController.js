@@ -28,7 +28,25 @@ const likeNovel = async (req, res) => {
   }
 };
 const starAuthor = async (req, res) => {
-  // todo
+  const {
+    params: { id: authorId },
+  } = req;
+  const { userId } = req.user;
+
+  const author = await Author.findOne({ _id: authorId });
+  if (!author) throw new NotFoundError(`No author with id ${authorId}`);
+
+  if (!author.stars.includes(userId)) {
+    await author.updateOne({
+      $push: { stars: userId },
+    });
+    res.status(StatusCodes.OK).json({ starsCount: author.stars.length + 1 });
+  } else {
+    await author.updateOne({
+      $pull: { stars: userId },
+    });
+    res.status(StatusCodes.OK).json({ starsCount: author.stars.length - 1 });
+  }
 };
 
 module.exports = {

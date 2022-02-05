@@ -11,7 +11,9 @@ const getAuthor = async (req, res) => {
   const author = await Author.findOne({ _id: authorId });
   if (!author) throw new NotFoundError(`No author with id ${authorId}`);
 
-  res.status(StatusCodes.OK).json({ author });
+  res
+    .status(StatusCodes.OK)
+    .json({ author: { ...author._doc, starsCount: author.stars.length } });
 };
 
 const getRandomAuthors = async (req, res) => {

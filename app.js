@@ -20,6 +20,7 @@ const public_author_router = require("./routes/public/authorRoute");
 const public_review_router = require("./routes/public/reviewRoute");
 // PROTECTED ROUTES
 const protected_user_router = require("./routes/protected/userRoute");
+const protected_notif_router = require("./routes/protected/notifRoute");
 const protected_review_router = require("./routes/protected/reviewRoute");
 const protected_status_router = require("./routes/protected/statusRoute");
 // ADMIN ROUTES
@@ -36,7 +37,7 @@ app.set("trust proxy", 1);
 app.use(
   rateLimiter({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+    max: 1000, // limit each IP to 1000 requests per windowMs
   })
 );
 
@@ -52,6 +53,7 @@ app.use("/api/v1/public/author", public_author_router);
 app.use("/api/v1/public/review", public_review_router);
 // PROTECTED ROUTERS
 app.use("/api/v1/protected/user", authUser, protected_user_router);
+app.use("/api/v1/protected/notification", authUser, protected_notif_router);
 app.use("/api/v1/protected/review", authUser, protected_review_router);
 app.use("/api/v1/protected/status", authUser, protected_status_router);
 // ADMIN ROUTERS
