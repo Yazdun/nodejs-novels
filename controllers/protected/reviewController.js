@@ -58,7 +58,9 @@ const updateReview = async (req, res) => {
       new: true,
       runValidators: true,
     }
-  );
+  )
+    .populate("novelRef", ["image", "title", "_id", "author"])
+    .populate("createdBy", ["image", "username"]);
   if (!review) throw new NotFoundError(`this review doesn't exist`);
 
   res.status(StatusCodes.OK).json({ review });
