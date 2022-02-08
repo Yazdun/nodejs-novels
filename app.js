@@ -15,6 +15,7 @@ const { authUser, authAdmin } = require("./middleware/authentication");
 
 // PUBLIC ROUTES
 const public_auth_router = require("./routes/public/authRoute");
+const public_search_router = require("./routes/public/searchRoute");
 const public_novel_router = require("./routes/public/novelRoute");
 const public_author_router = require("./routes/public/authorRoute");
 const public_review_router = require("./routes/public/reviewRoute");
@@ -46,9 +47,10 @@ app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(xss());
-
+public_search_router;
 // PUBLIC ROUTERS
 app.use("/api/v1/public/authentication", public_auth_router);
+app.use("/api/v1/public/search", public_search_router);
 app.use("/api/v1/public/novel", public_novel_router);
 app.use("/api/v1/public/author", public_author_router);
 app.use("/api/v1/public/review", public_review_router);
