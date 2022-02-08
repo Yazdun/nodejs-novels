@@ -18,6 +18,7 @@ const public_auth_router = require("./routes/public/authRoute");
 const public_novel_router = require("./routes/public/novelRoute");
 const public_author_router = require("./routes/public/authorRoute");
 const public_review_router = require("./routes/public/reviewRoute");
+const public_user_router = require("./routes/public/userRoute");
 // PROTECTED ROUTES
 const protected_user_router = require("./routes/protected/userRoute");
 const protected_notif_router = require("./routes/protected/notifRoute");
@@ -51,6 +52,7 @@ app.use("/api/v1/public/authentication", public_auth_router);
 app.use("/api/v1/public/novel", public_novel_router);
 app.use("/api/v1/public/author", public_author_router);
 app.use("/api/v1/public/review", public_review_router);
+app.use("/api/v1/public/user", public_user_router);
 // PROTECTED ROUTERS
 app.use("/api/v1/protected/user", authUser, protected_user_router);
 app.use("/api/v1/protected/notification", authUser, protected_notif_router);
