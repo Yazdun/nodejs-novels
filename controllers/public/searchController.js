@@ -21,7 +21,6 @@ const toRemove = [
 
 const search = async (req, res) => {
   const { searchTerm } = req.query;
-  if (!searchTerm) throw new BadRequestError("provide search term");
 
   novels = await Novel.find({}, ["title", "image", "author"]);
   authors = await Author.find({}, ["name", "image", "stars"]);
@@ -41,7 +40,7 @@ const search = async (req, res) => {
     fields: ["title"],
     storeFields: ["_id", "title", "author", "image"],
     searchOptions: {
-      fuzzy: 0.3,
+      fuzzy: 0.1,
     },
   });
   searchNovels.addAll(novels);
@@ -51,7 +50,7 @@ const search = async (req, res) => {
     fields: ["name"],
     storeFields: ["_id", "name", "image", "stars"],
     searchOptions: {
-      fuzzy: 0.5,
+      fuzzy: 0.2,
     },
   });
   searchAuthors.addAll(authors);
