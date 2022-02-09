@@ -97,9 +97,16 @@ const getAllReviews = async (req, res) => {
   res.status(StatusCodes.OK).json({ reviews });
 };
 
+const getPendingReviews = async (req, res) => {
+  const reviews = await Review.countDocuments({ isPending: true });
+
+  res.status(StatusCodes.OK).json({ reviews });
+};
+
 module.exports = {
   approveReview,
   disapproveReview,
   deleteReview,
   getAllReviews,
+  getPendingReviews,
 };

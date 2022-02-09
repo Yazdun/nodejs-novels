@@ -5,9 +5,11 @@ const {
   disapproveReview,
   deleteReview,
   getAllReviews,
+  getPendingReviews,
 } = require("../../controllers/admin/reviewController");
 
 router.get("/", getAllReviews);
+router.get("/pending", getPendingReviews);
 router.delete("/delete/:id", deleteReview);
 router.patch("/approve/:id", approveReview);
 router.patch("/disapprove/:id", disapproveReview);
