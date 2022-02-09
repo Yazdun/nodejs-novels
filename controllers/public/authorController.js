@@ -37,7 +37,11 @@ getAuthorNovels = async (req, res) => {
     params: { id: authorId },
   } = req;
 
-  const novels = await Novel.find({ authorInfo: authorId });
+  const novels = await Novel.find({ authorInfo: authorId }, [
+    "title",
+    "image",
+    "author",
+  ]);
 
   res.status(StatusCodes.OK).json({ novels });
 };

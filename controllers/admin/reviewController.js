@@ -103,10 +103,29 @@ const getPendingReviews = async (req, res) => {
   res.status(StatusCodes.OK).json({ reviews });
 };
 
+const getReviewStats = async (req, res) => {
+  const reviews = await Review.aggregate([
+    {
+      $project: {
+        month: { $month: "$createdAt" },
+      },
+    },
+    {
+      $group: {
+        _id: "$month",
+        total: { $sum: 1 },
+      },
+    },
+  ]);
+
+  res.status(StatusCodes.OK).json({ reviews });
+};
+
 module.exports = {
   approveReview,
   disapproveReview,
   deleteReview,
   getAllReviews,
   getPendingReviews,
+  getReviewStats,
 };

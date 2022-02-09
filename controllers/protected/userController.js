@@ -88,7 +88,7 @@ const getUserStars = async (req, res) => {
 
 const getUserLikes = async (req, res) => {
   const { userId } = req.user;
-  const allNovels = await Novel.find({}, ["image", "title", "likes"]);
+  const allNovels = await Novel.find({}, ["image", "title", "likes", "author"]);
 
   const novels = allNovels.filter((novel) => {
     return novel.likes.includes(userId);

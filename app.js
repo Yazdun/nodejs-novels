@@ -31,6 +31,7 @@ const admin_author_router = require("./routes/admin/authorRoute");
 const admin_novel_router = require("./routes/admin/novelRoute");
 const admin_review_router = require("./routes/admin/reviewRoute");
 const admin_stats_router = require("./routes/admin/statsRoute");
+const admin_users_router = require("./routes/admin/userRoute");
 // ERROR HANDLER
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -67,6 +68,7 @@ app.use("/api/v1/admin/author", authAdmin, admin_author_router);
 app.use("/api/v1/admin/novel", authAdmin, admin_novel_router);
 app.use("/api/v1/admin/review", authAdmin, admin_review_router);
 app.use("/api/v1/admin/stats", authAdmin, admin_stats_router);
+app.use("/api/v1/admin/users", authAdmin, admin_users_router);
 
 // ERROR HANDLER
 app.use(notFoundMiddleware);
