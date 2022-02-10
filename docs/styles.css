@@ -91,6 +91,20 @@ h2 {
   text-transform: uppercase;
 }
 
+.base {
+  margin-bottom: var(--med--rem);
+}
+
+.base p {
+  padding: var(--med--rem);
+  color: var(--clr--txt--sec);
+  background-color: var(--clr--contrast);
+  text-align: center;
+  font-family: var(--font--sec);
+  border-radius: var(--min--rem);
+  font-weight: 600;
+}
+
 .container {
   width: 100%;
   max-width: var(--max--width--desktop);
