@@ -49,7 +49,10 @@ app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(xss());
-public_search_router;
+
+// app.use(express.static("docs"));
+app.use("/", express.static("docs"));
+
 // PUBLIC ROUTERS
 app.use("/api/v1/public/authentication", public_auth_router);
 app.use("/api/v1/public/search", public_search_router);
