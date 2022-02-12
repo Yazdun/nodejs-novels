@@ -40,7 +40,7 @@ I have also built two separate frontend user interfaces for this project, one of
 
 ## Built with
 
-This API is built with `NodeJS` and `Express JS`, using `MongoDB` for database and `JWT` for user authentication.
+This API is built with `Node.JS` and `Express.JS`, using `MongoDB` for database and `JWT` for user authentication.
 
 - [Node.js](https://nodejs.org/en/)
 - [Express.js](https://expressjs.com/)
