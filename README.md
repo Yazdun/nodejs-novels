@@ -38,7 +38,7 @@ I have also built two separate frontend user interfaces for this project, one of
 
 🔗 [React Novels Public Users](/guides/content/editing-an-existing-page)
 
-## About The Project
+## Built with
 
 This API is built with `NodeJS` and `Express JS`, using `MongoDB` for database and `JWT` for user authentication.
 
