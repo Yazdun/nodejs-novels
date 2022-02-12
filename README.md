@@ -26,7 +26,7 @@
 
 ## About The Project
 
-You can create, update, delete and read and much more cool stuff with your favourite novels and authors. This APi has three separate routings which are `admin` , `protected` and `public` .
+You can create, update, delete, read and much more cool stuff with your favourite novels and authors. This APi has three separate routings which are `admin` , `protected` and `public` .
 
 - with admin routes you can perform CRUD funcionalities and also view analytics and managements.
 - with protected routes you can sign up and login as a user, create reviews and rate novels, like novels give your favourite authors a star and much more cool stuffs !
