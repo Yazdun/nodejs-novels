@@ -34,9 +34,9 @@ You can create, update, delete, read and much more cool stuff with your favourit
 
 I have also built two separate frontend user interfaces for this project, one of them is dedicated to admin panel and second one is dedicated to public and protected routes. You can check their source code following the links below 👇
 
-🔗 [React Novels Admin Panel ](/guides/content/editing-an-existing-page)
+🔗 [React Novels Admin Panel ](https://github.com/Yazdun/react-novels-admin)
 
-🔗 [React Novels Public Users](/guides/content/editing-an-existing-page)
+🔗 [React Novels Public Users](https://github.com/Yazdun/react-novels-public)
 
 ## Built with
 
