@@ -1,8 +1,9 @@
 <div align="center">
 
 ![Website](https://img.shields.io/website?down_color=red&down_message=DOWN&label=HEROKU&logo=heroku&style=for-the-badge&up_color=brightgreen&up_message=ACTIVE&url=https%3A%2F%2Fnodejs-novels.herokuapp.com%2F)
-![GitHub last commit](https://img.shields.io/github/last-commit/Yazdun/nodejs-novels?color=brightgreen&logo=git&logoColor=white&style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Yazdun/nodejs-novels?logo=github&logoColor=white&style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Yazdun/nodejs-novels?color=violet&logo=github&logoColor=white&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/Yazdun/nodejs-novels?color=lightgray&logo=git&logoColor=white&style=for-the-badge)
 
 <!-- PROJECT LOGO -->
 <br />
