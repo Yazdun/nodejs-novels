@@ -49,7 +49,7 @@ This API is built with `Node.JS` and `Express.JS`, using `MongoDB` for database 
 
 ## Getting Started
 
-To run this project on your local machine do following steps :
+To run this project on your local machine do the following steps :
 
 1. Install NPM packages
    ```
