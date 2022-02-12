@@ -32,7 +32,7 @@ const admin_novel_router = require("./routes/admin/novelRoute");
 const admin_review_router = require("./routes/admin/reviewRoute");
 const admin_stats_router = require("./routes/admin/statsRoute");
 const admin_users_router = require("./routes/admin/userRoute");
-// ERROR HANDLER
+// ERROR HANDLERS
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
